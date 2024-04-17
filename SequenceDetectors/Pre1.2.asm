@@ -8,7 +8,3 @@ Work: inc ax     ;increment position
       jc  Work   ;finish the process if carry flag is 0.
       
 ret
-
-
-
-

@@ -1,9 +1,9 @@
-% An n assembly code that draws (using pixel operations) a square or a triangle on the screen
-% if input is letter `S/s' or `T/t', respectively. Shapes are drawn as centered on the screen horizontally
-% and vertically in graphics mode 12h (i.e. 640x480 pixels). The program is case insensitive.
-% For the other inputs, the program writes `It is not a valid input' message on the screen and
-% ask again. After shape type selection, program takes the height of the shape from user as number 
-% of horizontal pixel lines.
+; An n assembly code that draws (using pixel operations) a square or a triangle on the screen
+; if input is letter `S/s' or `T/t', respectively. Shapes are drawn as centered on the screen horizontally
+; and vertically in graphics mode 12h (i.e. 640x480 pixels). The program is case insensitive.
+; For the other inputs, the program writes `It is not a valid input' message on the screen and
+; ask again. After shape type selection, program takes the height of the shape from user as number 
+; of horizontal pixel lines.
 
 org 100h 
 

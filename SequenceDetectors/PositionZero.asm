@@ -1,3 +1,6 @@
+; An assembly code that finds the position of bit '0' starting from
+; LSB as 1st position in a binary number with only single '0' in it.
+
 org 100h
 
 mov bx,10111111b ;8-bit number  

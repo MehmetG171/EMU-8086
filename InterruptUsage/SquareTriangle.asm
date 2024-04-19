@@ -1,3 +1,8 @@
+; An assembly code that prints a square or a triangle on the screen if input is letter `S/s' or `T/t', 
+; respectively. The program is case insensitive. For the other inputs, the program writes
+; `It is not a valid input' message on the screen and asks again. After shape type selection, program 
+; takes the height of the shape from user as number of lines to print.
+
 org 100h
 
 Again:                              ; Ask again for Input
@@ -204,31 +209,31 @@ SqDraw endp
 height proc
       
        mov AH,09h 
-       mov DX,offset AskHeight              ;Prompt user to enter the height
+       mov DX,offset AskHeight              ; Prompt user to enter the height
        int 21h 
                                  
        mov DX,offset TakeHeight
        mov AH,0ah
        int 21h
                                          
-       mov BX,0                             ;Clear
-       mov BP,0                             ;Clear Counter
-       mov SI,2                             ;SI as a counter starting from 2   
-       mov BL,TakeHeight[1]                 ;BL --> Character length of TakeHeight
-       mov TakeHeight[BX+2],'$'             ;End TakeHeight with '$' 
+       mov BX,0                             ; Clear
+       mov BP,0                             ; Clear Counter
+       mov SI,2                             ; SI as a counter starting from 2   
+       mov BL,TakeHeight[1]                 ; BL --> Character length of TakeHeight
+       mov TakeHeight[BX+2],'$'             ; End TakeHeight with '$' 
        mov AX,0003h
-       int 10h                              ;Clean the screen
+       int 10h                              ; Clean the screen
                         
 ret
 
 height endp 
 
 
-HDig proc                                   ;Split Height into digits
+HDig proc                                   ; Split Height into digits
 
 NotFinStr:
 
-           cmp TakeHeight+SI,24h            ;Check if the end of string
+           cmp TakeHeight+SI,24h            ; Check if the end of string
            je  FinStr
            sub TakeHeight+SI,30h            ;Convert Ascii to numerical value
            lea BX,TakeHeight      
@@ -241,30 +246,30 @@ NotFinStr:
 FinStr:                           
            mov SI,0                         
            mov DX,0                                     
-           dec BP                     ;Remaining Height
+           dec BP                     ; Remaining Height
            mov AX,1
-           mov BL,NOs+BP              ;Assign first digit to BL
-           mul BL                     ;Obtain Units
+           mov BL,NOs+BP              ; Assign first digit to BL
+           mul BL                     ; Obtain Units
            mov DX,0
-           add DX,AX                  ;Reconstruct the number in DX
+           add DX,AX                  ; Reconstruct the number in DX
            cmp BP,0
-           je  BPLast                 ;Check whether BP is the last digit
+           je  BPLast                 ; Check whether BP is the last digit
 
            dec BP 
            mov AX,10 
-           mov BL,NOs+BP              ;Assign second digit to BL
-           mul BL                     ;Obtain Tens
+           mov BL,NOs+BP              ; Assign second digit to BL
+           mul BL                     ; Obtain Tens
            add DX,AX
-           cmp BP,0                   ;Reconstruct the number in DX
-           je  BPLast                 ;Check whether BP is the last digit
+           cmp BP,0                   ; Reconstruct the number in DX
+           je  BPLast                 ; Check whether BP is the last digit
   
-           dec BP                     ;Assign third digit to BL
-           mov AX,100                 ;Obtain Hundreds
+           dec BP                     ; Assign third digit to BL
+           mov AX,100                 ; Obtain Hundreds
            mov BL,NOs+BP
            mul BL  
-           add DX,AX                  ;Reconstruct the number in DX
+           add DX,AX                  ; Reconstruct the number in DX
            cmp BP,0
-           je  BPLast                 ;Check whether BP is the last digit
+           je  BPLast                 ; Check whether BP is the last digit
 
 BPLast:
     

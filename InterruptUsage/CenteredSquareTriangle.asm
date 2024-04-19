@@ -1,6 +1,13 @@
+% An n assembly code that draws (using pixel operations) a square or a triangle on the screen
+% if input is letter `S/s' or `T/t', respectively. Shapes are drawn as centered on the screen horizontally
+% and vertically in graphics mode 12h (i.e. 640x480 pixels). The program is case insensitive.
+% For the other inputs, the program writes `It is not a valid input' message on the screen and
+% ask again. After shape type selection, program takes the height of the shape from user as number 
+% of horizontal pixel lines.
+
 org 100h 
 
-AskHeight       db 10,13,'what is the height of the shape:','$'
+AskHeight       db 10,13,'What is the height of the shape:','$'
 InvCho          db 10,13,'It is not a valid input',10,13,'$'
 ChooseShape     db 'Choose a shape T/t or S/s:','$'
 TakeHeight      db 10,?, 10 dup(' ')

@@ -1,4 +1,15 @@
-;ELE338-Term Project Mehmet Nurettin GUNDUZ 21990887
+; Mathematical Functions Application
+; Menu Item 1: Check if a number entered by user is a Fibonacci number and print all
+; Fibonacci numbers upto that number. If it is not a Fibonacci number, this function
+; should give the nearest Fibonacci number that is smaller than the input and Fibonacci
+; numbers before that.
+; Menu Item 2: Calculate the Factorial of a given number and print the result to the user.
+; Menu Item 3: Check if a number entered by user is square of an integer and print that
+; integer to the user. If not, print the nearest square number that is smaller than the
+; user input and print its square root as well.
+; Menu Item 4: Check if a number entered by user is a Prime number and print the
+; result. If not nd the nearest Prime number that is smaller than the user input and
+; print it.
 
 .MODEL SMALL
 .DATA
@@ -6,7 +17,7 @@
 msg1    DB 'Item-1 (Fibonacci), Item-2 (Factorial), Item-3 (Square), Item-4 (Prime) ','$'
 msg2    DB 'Press the Item Number or Esc for EXIT or Space for ABOUT SECTION :','$' 
 msg3fac DB 'Enter the number: ','$'
-msg4    DB 'Program: ELE338 Project, Programmer: Mehmet Gunduz ','$'
+msg4    DB 'Programmer: Mehmet Gunduz ','$'
   
 .CODE 
 
@@ -14,7 +25,7 @@ MAIN PROC FAR
     
        MOV AX,00H
        MOV DX,00H
-BEGIN: MOV AH, 02h          ;Display the messages
+BEGIN: MOV AH, 02h          ; Display the messages
        MOV DL, 09h        
        INT 21h
        MOV AX, OFFSET DATA
@@ -29,7 +40,7 @@ BEGIN: MOV AH, 02h          ;Display the messages
        MOV DX, OFFSET msg2 
        INT 21H  
  
-INPUT: MOV AH, 01H          ;Direction in the menu
+INPUT: MOV AH, 01H          ; Direction in the menu
        INT 21H           
        CMP AL, 31h      
        JE  CALL1
@@ -45,28 +56,28 @@ INPUT: MOV AH, 01H          ;Direction in the menu
        JE  TERMINATE
        JMP INPUT 
        
-CALL1: CALL Fibonacci      ;Fibonacci call
+CALL1: CALL Fibonacci      ; Fibonacci call
        JMP  INPUT
        
-CALL2: CALL FAC            ;Factorial call
+CALL2: CALL FAC            ; Factorial call
        JMP  INPUT 
        
-CALL3: CALL Square         ;Square call
+CALL3: CALL Square         ; Square call
        JMP  INPUT
        
-CALL4: CALL Prime          ;Prime call
+CALL4: CALL Prime          ; Prime call
        JMP  INPUT
        
-CALL5: CALL SEC            ;About section call
+CALL5: CALL SEC            ; About section call
        JMP  INPUT  
        
-TERMINATE: CALL TER        ;Exit call
+TERMINATE: CALL TER        ; Exit call
            JMP  INPUT
                           
 MAIN ENDP
 
 
-TER PROC                   ;Exit Procedure
+TER PROC                   ; Exit Procedure
     
       HLT           
 
@@ -90,7 +101,7 @@ NUM PROC                   ;'Enter a number' Display
 NUM ENDP
 
 
-FAC PROC                  ;Factorial Procedure
+FAC PROC                  ; Factorial Procedure
     
     CALL NUM
     
@@ -131,7 +142,7 @@ FAC PROC                  ;Factorial Procedure
 FAC ENDP
 
 
-Prime PROC                  ;Prime Procedure
+Prime PROC                  ; Prime Procedure
     
 MOV SI,00H 
 
@@ -185,7 +196,7 @@ LAST:  MOV AX,BX
 Prime ENDP
 
                              
-Square PROC                  ;Square Procedure
+Square PROC                  ; Square Procedure
     
 MOV SI,00H
 
@@ -260,7 +271,7 @@ Square ENDP
 
 
 
-Fibonacci PROC                ;Fibonacci Procedure
+Fibonacci PROC                ; Fibonacci Procedure
     
 JMP BEGIN
     
@@ -336,8 +347,8 @@ PRINT PROC                    ;Print Procedure
 PRINT ENDP 
 
 
-INP PROC                ;Input Procedure
-                        ;Press 'Enter' after entering the number
+INP PROC                ; Input Procedure
+                        ; Press 'Enter' after entering the number
 MOV AH,02H 
 MOV DL,09H
 INT 21h
@@ -474,7 +485,7 @@ ERROR:   JMP BEGIN
          
 INP ENDP 
 
-SEC PROC                    ;'About Section' Procedure
+SEC PROC                    ; 'About Section' Procedure
     
     MOV AH, 02h
     MOV DL, 09h        

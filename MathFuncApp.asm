@@ -7,9 +7,8 @@
 ; Menu Item 3: Check if a number entered by user is square of an integer and print that
 ; integer to the user. If not, print the nearest square number that is smaller than the
 ; user input and print its square root as well.
-; Menu Item 4: Check if a number entered by user is a Prime number and print the
-; result. If not nd the nearest Prime number that is smaller than the user input and
-; print it.
+; Menu Item 4: Check if a number entered by user is a Prime number and print the result.
+; If not nd the nearest Prime number that is smaller than the user input and print it.
 
 .MODEL SMALL
 .DATA
